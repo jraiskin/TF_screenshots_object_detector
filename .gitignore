@@ -1,0 +1,4 @@
+/screenshot_detector/ssd_mobilenet_v1_coco_11_06_2017.tar.gz
+/screenshot_detector/ssd_mobilenet_v1_coco_11_06_2017/frozen_inference_graph.pb
+/.ipynb_checkpoints/*
+**/screenshot_detector/.ipynb_checkpoints*
