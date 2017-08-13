@@ -2,3 +2,7 @@
 /screenshot_detector/ssd_mobilenet_v1_coco_11_06_2017/frozen_inference_graph.pb
 /.ipynb_checkpoints/*
 **/screenshot_detector/.ipynb_checkpoints*
+
+**/image_resources/.ipynb_checkpoints*
+**/image_resources/training_set*
+**/image_resources/test_set*
