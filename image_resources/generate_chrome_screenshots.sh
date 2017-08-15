@@ -6,7 +6,7 @@
 
 #### open a new chrome window in google.com and minimize all other windows ####
 
-# update folder path, no quotes
+# update folder path, no quotes, to ${REPO_PATH}/image_resources/
 image_resources_path=~/git/TF_screenshots_object_detector/image_resources/
 
 # new chrome window title
