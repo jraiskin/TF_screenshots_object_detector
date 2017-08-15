@@ -15,8 +15,17 @@ browser_window_name="Google - Google Chrome"
 # screen size
 screen_width=1366
 screen_height=768
-min_window_width=100  # subjectively / arbitrarily chosen
-min_window_height=200  # subjectively / arbitrarily chosen
+#### size restrictions (due to desktop layout etc) ####
+# chrome takes a minimal window size
+# using wmctrl -lG returns a list with (x-offset, y-offset, width and height)
+# on my machine, these were the minimal values
+# [this was discovered after generating data once, when I drew boxes based on "ground truth" and saw some shifts]
+min_window_width=363
+min_window_height=332
+## restrict minimal x,y (launch bar, status bar) ##
+# also found these values by trying to move the window to (0,0) and seeing where it landed
+min_x=75
+min_y=34
 
 # training-test image
 number_of_images=200  # total number of images
@@ -48,8 +57,8 @@ for ((i=1;i<=number_of_images;i++)); do
     # $(( ( RANDOM % 10 )  + 1 ))
     
     # generate 2 random numbers for x,y coordinates of the window
-    pos_x=$(( (RANDOM % (( screen_width/2 )) ) + 0 ))
-    pos_y=$(( (RANDOM % (( screen_height/2 )) ) + 0 ))
+    pos_x=$(( (RANDOM % (( screen_width/2 )) ) + min_x ))
+    pos_y=$(( (RANDOM % (( screen_height/2 )) ) + min_y ))
     # set window width and height accordingly (NOT COORDINATES)
     pos_window_width=$(( (RANDOM % (( screen_width - pos_x - min_window_width )) ) + min_window_width ))
     pos_window_height=$(( (RANDOM % (( screen_height - pos_y - min_window_height )) ) + min_window_height ))
@@ -68,7 +77,7 @@ for ((i=1;i<=number_of_images;i++)); do
     fi
     
     # save screenshots (after short sleep, there is a resize? animation)
-    sleep 0.7s
+    sleep 0.5s
     import -window root $scrn_sht_path/$i.png
     
 done
