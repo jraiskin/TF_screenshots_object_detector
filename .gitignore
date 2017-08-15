@@ -6,3 +6,12 @@
 **/image_resources/.ipynb_checkpoints*
 **/image_resources/training_set*
 **/image_resources/test_set*
+
+**/object_detection/__pycache__*
+**/object_detection/*/__pycache__*
+**/slim/*/__pycache__*
+
+**/screenshot_detector/ssd_mobilenet_v1_coco_11_06_2017/eval_dir/*
+**/screenshot_detector/ssd_mobilenet_v1_coco_11_06_2017/model*
+
+/screenshot_detector/ssd_mobilenet_v1_coco_11_06_2017/events.out.tfevents.1502707456.yarden-X555LNB
