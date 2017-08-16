@@ -66,7 +66,7 @@ python object_detection/export_inference_graph.py \
 First, I needed to generate data from scratch.
 Luckily, screenshots are cheap to come by.
 
-I used `image_resources/generate_chrome_screenshots.sh`
+I used [`image_resources/generate_chrome_screenshots.sh`](image_resources/generate_chrome_screenshots.sh)
 to genearte screenshots automatically.
 I hand coded values, such as fixing the browser to Google Chrome, my screen dimensions,
 as well restrictions, such as minimal browser window size and screen edges (launch bar and status bar coordinates).
@@ -76,22 +76,24 @@ Saving the screenshot was done with `imagemagick`.
 Both packages are native to Ubuntu 16.04 (as far as I know).
 This way, 200 observations were created, 40 of which were reserved for testing.
 
-While moving the browser window around, the location is logged and saved to `windows_positions.csv`.
+While moving the browser window around, the location is logged and saved to [`windows_positions.csv`](image_resources/windows_positions.csv).
 Based on this file, two other CSV files were created, one for training and one for testing.
 These files are necessary in order to adhere to the [TFRecord file format](https://www.tensorflow.org/api_guides/python/python_io#tfrecords_format_details).
-Generating TFRecord file is done by `generate_tfrecord.py`, as well as creating the label maps,
+Generating TFRecord file is done by [`generate_tfrecord.py`](image_resources/generate_tfrecord.py), 
+as well as creating the label maps,
 was done based on the 
 [Preparing Inputs tutorial](https://github.com/tensorflow/models/blob/master/object_detection/g3doc/using_your_own_dataset.md)
 
 ## Training (partly!) and evaluation
 
 Download the [`ssd_mobilenet_v1_coco`](http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v1_coco_11_06_2017.tar.gz).
-This can also be done by running `screenshot_detector/screenshot_object_detector.ipynb`,
+This can also be done by running
+[`screenshot_detector/screenshot_object_detector.ipynb`](screenshot_detector/screenshot_object_detector.ipynb),
 a notebook partly based on [TensorFlow's Object Detection Demo](https://github.com/tensorflow/models/blob/master/object_detection/object_detection_tutorial.ipynb).
 The `ssd_mobilenet_v1_coco` model was chosen among the [object detection models provided by TensorFlow](https://github.com/tensorflow/models/blob/master/object_detection/g3doc/detection_model_zoo.md),
 since it is fast but not as accuracte, which suffices for our purpose.
 
-Training was enhanced by transfer learning, by using a pre-trained model, 
+Training was enhanced by transfer learning, using a pre-trained model, 
 as provided in [TensorFlow's Object Detection Demo](https://github.com/tensorflow/models/blob/master/object_detection/object_detection_tutorial.ipynb).
 
 Hyper-parameters in the config file were largely kept at default values,
@@ -100,10 +102,12 @@ based on the [pet detector's config file](https://github.com/tensorflow/models/b
 Evaluation is done based on the Mean Average Precision (MAP or AP), % AP at IoU=.50 (PASCAL VOC metric),
 as defined by the [COCO dataset](http://mscoco.org/dataset/#detections-eval).
 
-Exporting the inference graph is done by `object_detection/export_inference_graph.py`,
+Exporting the inference graph is done by
+[`object_detection/export_inference_graph.py`](object_detection/export_inference_graph.py),
 based on [this guide {NOTE the arguments in the guide are wrong! use the file as instructed here!}](https://github.com/tensorflow/models/blob/master/object_detection/g3doc/exporting_models.md). 
 
-Lastly, load the exported inference graph in visualize results in `screenshot_detector/screenshot_object_detector.ipynb`.
+Lastly, load the exported inference graph in visualize results in
+[`screenshot_detector/screenshot_object_detector.ipynb`](screenshot_detector/screenshot_object_detector.ipynb).
 
 ## Results
 
